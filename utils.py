@@ -2,19 +2,33 @@ import matplotlib.pyplot as plt
 import torch
 from experience import Experience
 
-def plot(values, moving_avg_period):
+def plot(values, moving_avg_period, config):
+    title = 'batch_size: ' + config['batch_size'] + \
+            '; gamma: ' + config['gamma'] + \
+            '; eps_decay: ' + config['eps_decay'] + \
+            '; target_update: ' + config['target_update'] + \
+            '; lr: ' + config['lr']
+    filename = 'output/tune/' + \
+               'bs-' + config['batch_size'] + \
+               '_g-' + config['gamma'] + \
+               '_ed-' + config['eps_decay'] + \
+               '_tu-' + config['target_update'] + \
+               '_lr-' + config['lr'] + \
+               '.png'
+
     plt.figure(2)
     plt.clf()        
-    plt.title('Training...')
+    plt.title(title)
     plt.xlabel('Episode')
     plt.ylabel('Duration')
     plt.plot(values)
     
     moving_avg = get_moving_average(moving_avg_period, values)
     plt.plot(moving_avg)
-    plt.pause(0.001)
-    print("Episode", len(values), "\n", \
-        moving_avg_period, "episode moving avg:", moving_avg[-1])
+    plt.savefig(filename)
+    #plt.pause(0.001)
+    #print("Episode", len(values), "\n", \
+    #    moving_avg_period, "episode moving avg:", moving_avg[-1])
     #if is_ipython: display.clear_output(wait=True)
 
 def get_moving_average(period, values):
