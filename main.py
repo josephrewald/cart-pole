@@ -39,7 +39,7 @@ def training_function(config):
     eps_start = 1
     eps_end = 0.01
     eps_decay = 0.001
-    target_update = 108
+    target_update = 10
     memory_size = 100000
     lr = config['lr'] #0.001
     num_episodes = 5000
