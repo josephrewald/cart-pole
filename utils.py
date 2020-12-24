@@ -3,17 +3,17 @@ import torch
 from experience import Experience
 
 def plot(values, moving_avg_period, config):
-    title = 'batch_size: ' + config['batch_size'] + \
-            '; gamma: ' + config['gamma'] + \
-            '; eps_decay: ' + config['eps_decay'] + \
-            '; target_update: ' + config['target_update'] + \
-            '; lr: ' + config['lr']
-    filename = 'output/tune/' + \
-               'bs-' + config['batch_size'] + \
-               '_g-' + config['gamma'] + \
-               '_ed-' + config['eps_decay'] + \
-               '_tu-' + config['target_update'] + \
-               '_lr-' + config['lr'] + \
+    title = 'batch_size: ' + str(config['batch_size']) + \
+            '; gamma: ' + str(config['gamma']) + \
+            '\n eps_decay: ' + str(config['eps_decay']) + \
+            '; target_update: ' + str(config['target_update']) + \
+            '; lr: ' + str(config['lr'])
+    filename = '/home/joseph/projects/deeplizard/rl/cart-pole/output/tune/' + \
+               'bs-' + str(config['batch_size']) + \
+               '_g-' + str(config['gamma']) + \
+               '_ed-' + str(config['eps_decay']) + \
+               '_tu-' + str(config['target_update']) + \
+               '_lr-' + str(config['lr']) + \
                '.png'
 
     plt.figure(2)

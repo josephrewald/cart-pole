@@ -3,6 +3,7 @@ import torch
 import torch.optim as optim
 from ray import tune
 import torch.nn.functional as F
+import numpy as np
 
 from agent import Agent
 from dqn import DQN
@@ -70,5 +71,9 @@ def training_function(config):
             target_net.load_state_dict(policy_net.state_dict())
 
     plot(episode_durations, 100, config)
-    tune.report(average_episode_duration=sum(episode_durations) / len(episode_durations))
+    f = get_moving_average(100, episode_durations)
+    f = np.average(f)
+    #print(f'final moving average is of type: {type(f)} and has value {f}')
+    tune.report(final_moving_avg=f)
+    #tune.report(avg_episode_duration=sum(episode_durations)/len(episode_durations))
     em.close()

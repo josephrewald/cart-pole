@@ -30,15 +30,15 @@ from training_function import training_function
 from ray import tune
 
 
-batch_size =    [128, 256, 512] # 256 - number of replay memory experiences considered
-gamma =         [0.9, 0.99, 0.999] # 0.999 - discount factor in Bellman eqn
+batch_size =    [128] #, 256, 512] # 256 - number of replay memory experiences considered
+gamma =         [0.9] #, 0.99, 0.999] # 0.999 - discount factor in Bellman eqn
 eps_start =     [1] # 1 - exploration rate
 eps_end =       [0.01] # 0.01
-eps_decay =     [0.01, 0.001, 0.0001] # 0.001
+eps_decay =     [0.01] # , 0.001, 0.0001] # 0.001
 target_update = [10, 50, 100] # 10 - frequency for updating target network
 memory_size =   [100000] # 100000 - capacity of replay memory
-lr =            [0.0001, 0.001, 0.01] # 0.001 - learning rate
-num_episodes =  [10] # 1000
+lr =            [0.0001, 0.001] # 0.001 - learning rate
+num_episodes =  [1000] # 1000
 
 analysis = tune.run(
     training_function, 
