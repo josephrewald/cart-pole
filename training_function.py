@@ -1,7 +1,7 @@
 from itertools import count
 import torch
 import torch.optim as optim
-from ray import tune
+# from ray import tune
 import torch.nn.functional as F
 import numpy as np
 
@@ -40,6 +40,7 @@ def training_function(config):
     episode_durations = []
     
     for episode in range(num_episodes):
+        print('in first for loop')
         em.reset()
         state = em.get_state()
         for timestep in count():
@@ -74,6 +75,6 @@ def training_function(config):
     f = get_moving_average(100, episode_durations)
     f = np.average(f)
     #print(f'final moving average is of type: {type(f)} and has value {f}')
-    tune.report(final_moving_avg=f)
+    #tune.report(final_moving_avg=f)
     #tune.report(avg_episode_duration=sum(episode_durations)/len(episode_durations))
     em.close()
